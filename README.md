@@ -243,6 +243,37 @@ Once you reboot and play some sound, the issue should be gone.
 
 File an issue and if we get it sorted, I'll add to this list.
 
+Using I2S PCM5100 audio card 
+
+There's a 3.3V regulator already on the audio board and you can leave it unconnected. I ended up connecting the 5V rail from the rpi to the VIN of the DAC and it works just fine. The blue LED on the DAC should light up when it's powered up correctly.
+
+Wiring Pinout:
+
+DAC BOARD   > Raspberry Pi 3 Model B connector J8
+-----------------------------------------------
+SCK         > Not wired (Internally generated)
+BCK         > PIN 12    (GPIO18)
+DIN         > PIN 40    (GPIO21)
+LRCK        > PIN 35    (GPIO19)
+GND         > PIN 6     (GND) Ground
+VIN         > PIN 2     (5V)
+
+-----------------------------------------------
+FLT             > Not wired 
+DEMP            > Not wired 
+XSMT            > Not wired 
+FMT             > Not wired 
+A3V3            > Not wired 
+AGND            > Not wired (Same as headphone out) 
+ROUT            > Not wired (Same as headphone out)
+AGNDL           > Not wired (Same as headphone out)
+LROUT           > Not wired (Same as headphone out)
+
+Use the Adafruit install and run this command in terminal 
+curl -sS https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/i2samp.sh | bash
+Reboot and hopefully sound emits from the card.
+
+
 ## Donations
 
 If you're so inclined, Bitcoin my address is `1PoDcAStyJoB7zZz2mny4KjtjiEu8S44ns`. :)
